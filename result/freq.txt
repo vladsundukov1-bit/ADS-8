@@ -1,4 +1,3 @@
-[freq.txt](https://github.com/user-attachments/files/28427373/freq.txt)
 the: 34540
 and: 22234
 to: 16674
