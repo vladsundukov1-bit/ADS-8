@@ -1,15 +1,18 @@
 // Copyright 2021 NNTU-CS
-#include  <iostream>
-#include  <fstream>
-#include  <locale>
-#include  <cstdlib>
-#include  "bst.h"
+#include <algorithm>
+#include <cctype>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <utility>
+#include <vector>
+#include "bst.h"
 
 bool isLatin(char ch);
 char toLower(char ch);
 
 void makeTree(BST<std::string>& tree, const char* filename) {
-  std::ifstream fileIn(source);
+    std::ifstream fileIn(filename);  // используем filename, а не source
     if (!fileIn.is_open()) {
         std::cerr << "Cannot open file" << std::endl;
         return;
@@ -19,7 +22,7 @@ void makeTree(BST<std::string>& tree, const char* filename) {
     while (fileIn.get(currentCh)) {
         if (isLatin(currentCh)) {
             wordBuffer.push_back(toLower(currentCh));
-    } else {
+        } else {
             if (!wordBuffer.empty()) {
                 tree.insert(wordBuffer);
                 wordBuffer.clear();
@@ -52,7 +55,7 @@ void printFreq(BST<std::string>& voc) {
 }
 
 bool isLatin(char ch) {
-    return (ch > 'a' && ch < 'z') || (ch > 'A' && ch < 'Z');
+    return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');
 }
 
 char toLower(char ch) {
